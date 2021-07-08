@@ -7,7 +7,7 @@ from tkinter import messagebox
 # Creating the window
 
 window = Tk()
-window.title("REGISTER")
+window.title("ADMIN")
 window.geometry("700x400")
 window.config(bg="gray")
 window.resizable(0, 0)

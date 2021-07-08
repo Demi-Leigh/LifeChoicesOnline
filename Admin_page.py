@@ -25,6 +25,18 @@ def addpage():
     import adding
 
 
+mydb = mysql.connector.connect(user="lifechoices",
+                               password="@Lifechoices1234", host="127.0.0.1", database="LifeChoicesOnline",
+                               auth_plugin="mysql_native_password")
+mycursor = mydb.cursor()
+
+
+# def delete():
+#     sql =
+#     mycursor.execute(sql)
+#     mydb.commit()
+
+
 # Creating buttons so that admin can interact with database
 add_btn = Button(window, text="ADD", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=addpage)
 add_btn.place(x=50, y=150)
