@@ -2,6 +2,7 @@
 # Designing a program that allows users to login online
 import mysql.connector
 from tkinter import *
+from tkinter import messagebox
 
 # Creating the window
 
@@ -35,6 +36,13 @@ def delete():
     sql = "ALTER TABLE Login ADD COLUMN ID_Number varchar(20)"
     mycursor.execute(sql)
     mydb.commit()
+
+
+def exit():
+    msg = messagebox.showinfo("NOTE", "GoodBye")
+    if msg == "ok":
+        window.destroy()
+
 
 
 # Creating buttons so that admin can interact with database

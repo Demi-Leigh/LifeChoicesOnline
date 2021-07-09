@@ -31,7 +31,9 @@ mycursor = mydb.cursor()
 
 
 def sign_in():
+    global mycursor
     mycursor.execute("SELECT * FROM Login")
+    mycursor = mycursor.fetchall()
 
     for i in mycursor:
         if name_ent.get() in i and password_ent.get() in i:
@@ -39,19 +41,30 @@ def sign_in():
             cursor = mydb.cursor()
             sql = "UPDATE Login SET Sign_In = curtime();"
             cursor.execute(sql)
-            print(cursor.rowcount, "")
+            print(cursor.rowcount, "time-recorded")
             mydb.commit()
             import Sign_out
             print(Sign_out)
         else:
             name_ent.delete(0, END)
             id_ent.delete(0, END)
-            messagebox.showerror("")
+            messagebox.showerror("Check Your Details", "Check Your Details" + "\n"
+                                 + "Check With The Admin To See If You In The Database")
 
 
 # Function to allow user to log in
 def login():
+    from datetime import datetime
 
+    time = datetime.now()
+    time = str(time)
+    mycursor.execute("SELECT user_id FROM Register WHERE Name='" + name_ent.get() + "' AND ID_Number='" + id_ent.get() + "'")
+    user_id = mycursor.fetchall()[0][0]
+    print(user_id)
+    sql = "INSERT INTO Login (Name, Password,user_id,Sign_In, ID_Number) VALUES (%s, %s, %s, %s, %s)"
+    val = (name_ent.get(), password_ent.get(), user_id, time, id_ent.get())
+    mycursor.execute(sql, val)
+    mydb.commit()
     msg = messagebox.showinfo("NOTE", "Logged Successfully")
     if msg == "ok":
         import Sign_out

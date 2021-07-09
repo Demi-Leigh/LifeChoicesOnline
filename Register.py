@@ -37,8 +37,11 @@ def register():
         mycursor.execute(add, values)
         mydb.commit()
 
-        sql = "INSERT INTO Login (Name, Password, ID_Number) VALUES (%s, %s, %s)"
-        val = (name_ent.get(), password_ent.get(), id_number_ent.get())
+        mycursor.execute("SELECT user_id FROM Register WHERE Name='" + name_ent.get() + "' AND ID_Number='" + id_number_ent.get() + "'")
+        user_id = mycursor.fetchall()[0][0]
+        print(user_id)
+        sql = "INSERT INTO Login (Name, Password, user_id, ID_Number) VALUES (%s, %s, %s, %s)"
+        val = (name_ent.get(), password_ent.get(), user_id, id_number_ent.get())
         mycursor.execute(sql, val)
         mydb.commit()
         for i in values:

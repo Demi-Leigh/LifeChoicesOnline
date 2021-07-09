@@ -44,8 +44,8 @@ def back():
     import Admin_page
 
 
-name_lbl = Label(window, fg="white", bg="gray", text="NAME: ")
-name_lbl.place(x=190, y=172)
+id_lbl = Label(window, fg="white", bg="gray", text="ID NUMBER: ")
+id_lbl.place(x=190, y=172)
 
 id_ent = Entry(window, fg="green", width=23)
 id_ent.place(x=360, y=170)
