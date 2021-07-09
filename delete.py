@@ -8,7 +8,7 @@ from tkinter import messagebox
 
 window = Tk()
 window.title("ADMINISTRATOR")
-window.geometry("700x600")
+window.geometry("700x400")
 window.config(bg="gray")
 window.resizable(0, 0)
 
@@ -27,13 +27,40 @@ mycursor = mydb.cursor()
 
 
 def delete():
-    dlt = "INSERT INTO Register(Name, Surname, Password, ID_Number, Contact_Number, NextOf_Kin, Kin_Number) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    values = ()
-    mycursor.execute(dlt, values)
+    dlt = "DELETE FROM Login WHERE ID_Number=" + id_ent.get()
+    mycursor.execute(dlt)
+    mydb.commit()
+
+    dlt = "DELETE FROM Register WHERE ID_Number=" + id_ent.get()
+    mycursor.execute(dlt)
     mydb.commit()
     msg = messagebox.showinfo("NOTE", "User Deleted")
+    if msg == "ok":
+        id_ent.delete(0, END)
 
 
 def back():
     window.destroy()
     import Admin_page
+
+
+name_lbl = Label(window, fg="white", bg="gray", text="NAME: ")
+name_lbl.place(x=190, y=172)
+
+id_ent = Entry(window, fg="green", width=23)
+id_ent.place(x=360, y=170)
+
+# surname_lbl = Label(window, fg="white", bg="gray", text="SURNAME: ")
+# surname_lbl.place(x=190, y=200)
+#
+# surname_ent = Entry(window, fg="green", width=23)
+# surname_ent.place(x=360, y=200)
+
+
+dlt_btn = Button(window, text="DELETE", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=delete)
+dlt_btn.place(x=190, y=300)
+
+return_btn = Button(window, text="RETURN", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=back)
+return_btn.place(x=400, y=300)
+
+window.mainloop()

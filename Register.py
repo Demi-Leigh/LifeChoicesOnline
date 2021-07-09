@@ -27,9 +27,20 @@ mycursor = mydb.cursor()
 
 
 def register():
+    from datetime import datetime
+
+    time = datetime.now()
+    time = str(time)
     try:
         add = "INSERT INTO Register(Name, Surname, Password, ID_Number, Contact_Number, NextOf_Kin, Kin_Number) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         values = (name_ent.get(), surname_ent.get(), password_ent.get(), id_number_ent.get(), contact_ent.get(), nextof_ent.get(), contact2_ent.get())
+        mycursor.execute(add, values)
+        mydb.commit()
+
+        sql = "INSERT INTO Login (Name, Password, ID_Number) VALUES (%s, %s, %s)"
+        val = (name_ent.get(), password_ent.get(), id_number_ent.get())
+        mycursor.execute(sql, val)
+        mydb.commit()
         for i in values:
             if i == "":
                 messagebox.showerror("ERROR", "Enter Details")

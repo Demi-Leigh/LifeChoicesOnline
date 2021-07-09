@@ -3,6 +3,7 @@
 import mysql.connector
 from tkinter import *
 import datetime
+from tkinter import messagebox
 
 # Creating the window
 
@@ -32,21 +33,25 @@ def sign_out():
 
     time = datetime.now()
     time = str(time)
-    sql = "UPDATE Login SET Sign_Out=" + time + " WHERE Password=" + password_ent.get() + ""
+    sql = "UPDATE Login SET Sign_Out='" + time + "' WHERE Password='" + password_ent.get() + "'"
     mycursor.execute(sql)
     mydb.commit()
+    msg = messagebox.showinfo("NOTE", "Logged Out Successfully")
+    if msg == "ok":
+        window.destroy()
+        import Login
 
 
 message = Label(window, text="CURRENTLY SIGNED IN", bg="gray")
-message.place(x=325, y=150)
+message.place(x=335, y=150)
 
-password_lbl = Label(window, text="Enter Password please: ", bg="gray")
+password_lbl = Label(window, text="Enter Password To Sign Out: ", bg="gray")
 password_lbl.place(x=325, y=200)
 
 password_ent = Entry(window)
-password_ent.place(x=325, y=250)
+password_ent.place(x=335, y=250)
 
 sign_out_btn = Button(window, text="Sign Out", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=sign_out)
-sign_out_btn.place(x=350, y=330)
+sign_out_btn.place(x=355, y=330)
 
 window.mainloop()

@@ -31,10 +31,10 @@ mydb = mysql.connector.connect(user="lifechoices",
 mycursor = mydb.cursor()
 
 
-# def delete():
-#     sql =
-#     mycursor.execute(sql)
-#     mydb.commit()
+def delete():
+    sql = "ALTER TABLE Login ADD COLUMN ID_Number varchar(20)"
+    mycursor.execute(sql)
+    mydb.commit()
 
 
 # Creating buttons so that admin can interact with database
@@ -44,7 +44,7 @@ add_btn.place(x=50, y=150)
 edit_btn = Button(window, text="EDIT", relief="raised", borderwidth=4, bg="white", width=10, height=1)
 edit_btn.place(x=50, y=250)
 
-dlt_btn = Button(window, text="DELETE", relief="raised", borderwidth=4, bg="white", width=10, height=1)
+dlt_btn = Button(window, text="DELETE", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=delete)
 dlt_btn.place(x=50, y=350)
 
 exit_btn = Button(window, text="EXIT", relief="raised", borderwidth=4, bg="white", width=10, height=1)

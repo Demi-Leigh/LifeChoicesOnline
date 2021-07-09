@@ -3,6 +3,7 @@
 import mysql.connector
 from tkinter import *
 import datetime
+from tkinter import messagebox
 
 # Creating the window
 
@@ -29,23 +30,38 @@ mydb = mysql.connector.connect(user="lifechoices",
 mycursor = mydb.cursor()
 
 
+def sign_in():
+    mycursor.execute("SELECT * FROM Login")
+
+    for i in mycursor:
+        if name_ent.get() in i and password_ent.get() in i:
+            window.destroy()
+            cursor = mydb.cursor()
+            sql = "UPDATE Login SET Sign_In = curtime();"
+            cursor.execute(sql)
+            print(cursor.rowcount, "")
+            mydb.commit()
+            import Sign_out
+            print(Sign_out)
+        else:
+            name_ent.delete(0, END)
+            id_ent.delete(0, END)
+            messagebox.showerror("")
+
+
 # Function to allow user to log in
 def login():
-    from datetime import datetime
 
-    time = datetime.now()
-    time = str(time)
-    sql = "INSERT INTO Login (Name,Password,Sign_In, user_id)VALUES (%s, %s, %s, %s)"
-    val = (name_ent.get(), password_ent.get(), time, 8)
-    mycursor.execute(sql, val)
-    mydb.commit()
-    print(mycursor.rowcount, "record inserted.")
+    msg = messagebox.showinfo("NOTE", "Logged Successfully")
+    if msg == "ok":
+        import Sign_out
 
 
 # Function to allow user to register
 def register():
     window.destroy()
     import Register
+
 
 # Function to sign out page
 def sign_out():
@@ -64,17 +80,24 @@ name_lbl = Label(window, fg="white", bg="gray", text="NAME: ")
 name_lbl.place(x=240, y=170)
 
 password_lbl = Label(window, fg="white", bg="gray", text="PASSWORD: ")
-password_lbl.place(x=240, y=230)
+password_lbl.place(x=240, y=210)
+
+id_lbl = Label(window, fg="white", bg="gray", text="ID NUMBER")
+id_lbl.place(x=240, y=250)
 
 name_ent = Entry(window, fg="green", width=25)
 name_ent.place(x=380, y=170)
 
 password_ent = Entry(window, fg="green", width=25)
-password_ent.place(x=380, y=230)
+password_ent.place(x=380, y=210)
+
+id_ent = Entry(window, fg="green", width=25)
+id_ent.place(x=380, y=250)
+
 
 # Adding Login, Register and Admin buttons
 
-signIn_btn = Button(window, text="SIGN IN", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=login)
+signIn_btn = Button(window, text="SIGN IN", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=sign_in)
 signIn_btn.place(x=70, y=330)
 
 signOut_btn = Button(window, text="SIGN OUT", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=sign_out)
