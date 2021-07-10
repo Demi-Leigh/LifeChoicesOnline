@@ -26,6 +26,9 @@ mydb = mysql.connector.connect(user="lifechoices",
 mycursor = mydb.cursor()
 
 
+# This function adds user to the register table
+# and then selects the user_id based on name and id number entered
+# and then adds user to the login table and returns to main page to sign in
 def register():
     from datetime import datetime
 
@@ -39,21 +42,21 @@ def register():
 
         mycursor.execute("SELECT user_id FROM Register WHERE Name='" + name_ent.get() + "' AND ID_Number='" + id_number_ent.get() + "'")
         user_id = mycursor.fetchall()[0][0]
-        print(user_id)
         sql = "INSERT INTO Login (Name, Password, user_id, ID_Number) VALUES (%s, %s, %s, %s)"
         val = (name_ent.get(), password_ent.get(), user_id, id_number_ent.get())
         mycursor.execute(sql, val)
         mydb.commit()
-        for i in values:
+        for i in values: # If entries are empty gives an error
             if i == "":
                 messagebox.showerror("ERROR", "Enter Details")
                 break
         else:
             mycursor.execute(add, values)
             mydb.commit()
-            messagebox.showinfo("NOTE", "Registered Successfully")
-            window.destroy()
-            import Login
+            msg= messagebox.showinfo("NOTE", "Registered Successfully, Please Log In At Next Screen")
+            if msg == "ok"
+                window.destroy()
+                import Login
 
     except ValueError:
         messagebox.showerror("ERROR", "Something Went Wrong")

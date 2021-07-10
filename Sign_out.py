@@ -27,7 +27,7 @@ mydb = mysql.connector.connect(user="lifechoices",
 mycursor = mydb.cursor()
 
 
-# Functions for the login page
+# allows the user to sign out and takes them back to the main window
 def sign_out():
     from datetime import datetime
 
