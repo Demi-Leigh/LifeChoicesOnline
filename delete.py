@@ -41,7 +41,6 @@ def delete():
 
 def back():
     window.destroy()
-    import Admin_page
 
 
 id_lbl = Label(window, fg="white", bg="gray", text="ID NUMBER: ")
@@ -60,7 +59,7 @@ id_ent.place(x=360, y=170)
 dlt_btn = Button(window, text="DELETE", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=delete)
 dlt_btn.place(x=190, y=300)
 
-return_btn = Button(window, text="RETURN", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=back)
+return_btn = Button(window, text="EXIT", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=back)
 return_btn.place(x=400, y=300)
 
 window.mainloop()

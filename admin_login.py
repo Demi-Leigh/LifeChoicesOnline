@@ -1,6 +1,6 @@
 # Demi-Leigh Jefferies Class 1
 # Designing a program that allows users to login online
-import mysql.connector
+
 from tkinter import *
 from tkinter import messagebox
 
@@ -12,6 +12,12 @@ window.geometry("700x400")
 window.config(bg="gray")
 window.resizable(0, 0)
 
+# Adding an image on top
+img = PhotoImage(file="Hnet.com-image.png")
+pic = Label(window, image=img, height=110, bg="gray")
+pic.photo = img
+pic.place(x=180, y=10)
+
 
 # Function for user to submit and log in as admin
 def confirm():  # function to make sure correct details are entered
@@ -21,12 +27,6 @@ def confirm():  # function to make sure correct details are entered
     else:  # if incorrect name or password entered will tell user details are incorrect
         messagebox.showerror("ERROR", "Incorrect details entered")
 
-
-# Adding an image on top
-img = PhotoImage(file="Hnet.com-image.png")
-pic = Label(window, image=img, height=110, bg="gray")
-pic.photo = img
-pic.place(x=180, y=10)
 
 name_lbl = Label(window, fg="white", bg="gray", text="NAME: ")
 name_lbl.place(x=180, y=170)

@@ -14,14 +14,13 @@ window.config(bg="gray")
 window.resizable(0, 0)
 window.wm_iconify()
 
-# Creating main screen to either register or login
 # Adding an image on top
 img = PhotoImage(file="Hnet.com-image.png")
 pic = Label(window, image=img, height=110, bg="gray")
 pic.photo = img
 pic.place(x=180, y=10)
 
-
+# Linking Python and SQL
 mydb = mysql.connector.connect(user="lifechoices",
                                password="@Lifechoices1234", host="127.0.0.1", database="LifeChoicesOnline",
                                auth_plugin="mysql_native_password")
@@ -29,16 +28,19 @@ mycursor = mydb.cursor()
 
 
 # Functionality for buttons
+# Takes you to the window to add someone to register
 def addpage():
     window.destroy()
     import adding
 
 
+# Deletes an entry
 def delete():
-    window.destroy()
+    window.iconify
     import delete
 
 
+# Closes window
 def exit():
     msg = messagebox.showinfo("NOTE", "You Will Now Return To The Main Screen")
     if msg == "ok":
@@ -46,23 +48,26 @@ def exit():
         import Login
 
 
+# Displays Register Table
 def display_window():
-
     import database
 
 
+# Checks how many people have signed in
 def in_count():
     mycursor.execute("SELECT COUNT(Sign_In) FROM Login")
     for i in mycursor:
         in_lbl.config(text=i)
 
 
+# Checks how many have signed out
 def out_count():
     mycursor.execute("SELECT COUNT(Sign_Out) FROM Login")
     for i in mycursor:
         out_lbl.config(text=i)
 
 
+# Clears the Sign In/Out count
 def clear():
     in_lbl.config(text="")
     out_lbl.config(text="")

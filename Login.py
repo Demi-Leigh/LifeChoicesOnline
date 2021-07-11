@@ -44,10 +44,18 @@ def sign_in():
             cursor.execute(sql)
             print(cursor.rowcount, "time-recorded")
             mydb.commit()
-            msg = messagebox.showinfo("NOTE", "Login Successful! Enjoy Your Day")
-            if msg == "ok":
-                window.destroy()
-                import Sign_out
+            messagebox.showinfo("NOTE", "Login Successful! Enjoy Your Day")
+
+
+def signing_out():
+    from datetime import datetime
+
+    time = datetime.now()
+    time = str(time)
+    sql = "UPDATE Login SET Sign_Out='" + time + "' WHERE Password='" + password_ent.get() + "'"
+    mycursor.execute(sql)
+    mydb.commit()
+    messagebox.showinfo("NOTE", "Logged Out Successfully")
 
 
 # Takes the user to the register window
@@ -57,7 +65,7 @@ def register():
 
 
 # Takes the user to the sign out page
-def exit():
+def exit_window():
     msg = messagebox.showinfo("GOODBYE", "Goodbye Enjoy The Rest Of Your Day")
     if msg == "ok":
         window.destroy()
@@ -85,17 +93,19 @@ password_ent.place(x=380, y=210)
 # Adding Login, Register and Admin buttons
 
 signIn_btn = Button(window, text="SIGN IN", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=sign_in)
-signIn_btn.place(x=70, y=330)
+signIn_btn.place(x=60, y=330)
+
+signOut_btn = Button(window, text="SIGN OUT", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=signing_out)
+signOut_btn.place(x=200, y=330)
 
 register_btn = Button(window, text="REGISTER", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=register)
-register_btn.place(x=250, y=330)
+register_btn.place(x=340, y=330)
 
 admin_btn = Button(window, text="ADMIN", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=admin_login)
-admin_btn.place(x=430, y=330)
+admin_btn.place(x=480, y=330)
 
-exit_btn = Button(window, text="EXIT", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=exit)
-exit_btn.place(x=610, y=330)
+exit_btn = Button(window, text="EXIT", relief="raised", borderwidth=4, bg="white", width=10, height=1, command=exit_window)
+exit_btn.place(x=620, y=330)
 
 
 window.mainloop()
-

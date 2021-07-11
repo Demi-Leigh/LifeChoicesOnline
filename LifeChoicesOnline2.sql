@@ -32,7 +32,7 @@ CREATE TABLE `Login` (
   PRIMARY KEY (`Password`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `Login_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Register` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `Login` (
 
 LOCK TABLES `Login` WRITE;
 /*!40000 ALTER TABLE `Login` DISABLE KEYS */;
-INSERT INTO `Login` VALUES ('Demi-Leigh','2301',19,'2021-07-10 14:41:09','null','9501230185082'),('bianca','960111',8,'2021-07-10 10:37:18','2021-07-10 12:39:15.889510',NULL);
+INSERT INTO `Login` VALUES ('Luyanda','12345',24,'2021-07-11 09:30:56','2021-07-11 11:31:38.015671','1234567890'),('bianca','960111',8,'2021-07-10 10:37:18','2021-07-10 12:39:15.889510',NULL);
 /*!40000 ALTER TABLE `Login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +62,7 @@ CREATE TABLE `Register` (
   `Kin_Number` varchar(20) NOT NULL,
   `user_id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `Register` (
 
 LOCK TABLES `Register` WRITE;
 /*!40000 ALTER TABLE `Register` DISABLE KEYS */;
-INSERT INTO `Register` VALUES ('bianca','vos','960111','960111009283','0679715026','demi','45458940898',8),('Demi-Leigh','Jefferies','2301','9501230185082','0843100664','Bronwin','0217155958',19),('Demi-Leigh','Jefferies','2301','9501230185082','0843100664','Bronwin','0217155958',20);
+INSERT INTO `Register` VALUES ('bianca','vos','960111','960111009283','0679715026','demi','45458940898',8),('Luyanda','Dingindlela','12345','1234567890','09876543','gfgjkj','dfghjk',24);
 /*!40000 ALTER TABLE `Register` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -84,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-10 16:49:56
+-- Dump completed on 2021-07-11 11:33:48
